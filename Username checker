@@ -1,0 +1,16 @@
+import docx
+import requests
+
+# Open the Word document and read the text
+document = docx.Document('document.docx')
+username = document.paragraphs[0].text
+
+# Append the text to the end of the Instagram URL
+url = f'www.instagram.com/{username}'
+
+# Send a GET request to the URL and check the response status code
+response = requests.get(url)
+if response.status_code == 404:
+    print("Username already taken.")
+else:
+    print("It looks like this username might be available.")
